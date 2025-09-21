@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+        }
+        .dark body {
+            background-color: #111827;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <!-- Login Container -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-sm mx-4">
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-6 text-center">
+            Login
+        </h1>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
+                    placeholder="you@example.com"
+                >
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
+                    placeholder="••••••••"
+                >
+            </div>
+            <div id="messageBox" class="text-center py-2 text-sm rounded-lg" style="display: none;"></div>
+            <button
+                type="submit"
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+            >
+                Sign In
+            </button>
+        </form>
+
+        <div class="text-center mt-4 text-sm text-gray-500 dark:text-gray-400">
+            Don't have an account? <a href="signup_page.html" class="text-indigo-600 hover:text-indigo-500 font-medium">Sign up here</a>
+        </div>
+        <div class="text-center mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <a href="index.html" class="text-indigo-600 hover:text-indigo-500 font-medium">Go to Home Page</a>
+        </div>
+    </div>
+
+    <!-- Script for dark mode and form handling -->
+    <script>
+        const messageBox = document.getElementById('messageBox');
+        const loginForm = document.getElementById('loginForm');
+
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            showMessage('Login successful!', 'bg-green-100 text-green-700');
+        });
+
+        function showMessage(message, classes) {
+            messageBox.textContent = message;
+            messageBox.className = 'text-center py-2 text-sm rounded-lg ' + classes;
+            messageBox.style.display = 'block';
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000); // Hide after 3 seconds
+        }
+
+        // Dark mode toggle (optional, but a nice touch)
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    </script>
+</body>
+</html>
